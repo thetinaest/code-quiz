@@ -1,0 +1,15 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#quiz-content {
+    text-align: center;
+}
+
+#quiz-content p {
+    width: 50%;
+    position: relative;
+    left: 25%;
+}
