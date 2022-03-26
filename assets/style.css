@@ -13,3 +13,12 @@ header {
     position: relative;
     left: 25%;
 }
+
+#answers {
+    background-color: salmon;
+    height: 100px;
+}
+#question {
+    background-color: lavender;
+    height: 100px;
+}

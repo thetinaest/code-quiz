@@ -8,20 +8,21 @@ var questionCounter = 0;
 var questionDisplay = document.querySelector('#question');
 var answersBox = document.querySelector('#answers');
 var introP = document.querySelector('#intro');
+var answerCheck = document.querySelector('#answerCheck');
 var allQuestions = [
   {
       question: "What's up?",
       A: "nm",
       B: "sup",
       C: "I try my best",
-      correct1: "nm"
+      correct: "nm"
   },
   {
       question: "How r u",
       A: "good",
       B: "bad",
       C: "great",
-      correct2: "great"
+      correct: "great"
   }
 ];
 
@@ -48,22 +49,35 @@ var startGame = function() {
   startCountdown();
   startBtn.remove();
   introP.remove();
+  // reset();
   createQuestions(questionCounter);
-
-
 };
 
-var checkanswer = function() {
-  console.log("Hell yeah!");
-  // questionCounter = questionCounter + 1;
+var reset = function() {
+  questionDisplay.innerText = "";
+  var child = answersBox.lastElementChild; 
+  while (child) {
+      answersBox.removeChild(child);
+      child = answersBox.lastElementChild;
+  };
+  // createQuestions();
+}
+
+var checkanswer = function(event) {
+  if (event.target.innerText === allQuestions[questionCounter].correct) {
+    answerCheck.innerText = "Correct!"
+  } else {
+    answerCheck.innerText = "Incorrect! -10 seconds."
+  }
   questionCounter++;
   console.log(questionCounter);
+  reset();
+  createQuestions();
 
 }
 
-// console.log(questionCounter)
 var createQuestions = function(questionCounter) {
-  console.log(questionCounter);
+  questionDisplay.innerText = allQuestions[questionCounter].question;
   var buttonA = document.createElement("button");
   var buttonB = document.createElement("button");
   var buttonC = document.createElement("button");
@@ -76,11 +90,12 @@ var createQuestions = function(questionCounter) {
   A.setAttribute("id", "A");
   B.setAttribute("id", "B");
   C.setAttribute("id", "C");
-  questionDisplay.innerText = allQuestions[questionCounter].question;
 
 
   document.querySelector("#A").addEventListener("click", checkanswer)
+  document.querySelector("#B").addEventListener("click", checkanswer)
+  document.querySelector("#C").addEventListener("click", checkanswer)
 }
 
-//event listener
+//event listeners
 startBtn.addEventListener("click", startGame);
