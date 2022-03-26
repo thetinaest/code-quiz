@@ -30,19 +30,14 @@ var restart = function() {
   location.reload();
 }
 
-// function selectObjKeys() {
-
-// };
-
 function startCountdown() {  
-  // selectObjKeys();
   interval = setInterval(() => {
       timer.innerHTML = ("Time: " + time);
     time--;
     if (time < 0 ) {
       clearInterval(interval)
       timer.innerHTML = "Time: 0";
-      alert('Quiz Over')
+      // alert('Quiz Over')
     }
   }, 1000);
 };
@@ -53,34 +48,38 @@ var startGame = function() {
   startCountdown();
   startBtn.remove();
   introP.remove();
-  createQuestions();
+  createQuestions(questionCounter);
 
 
 };
 
 var checkanswer = function() {
   console.log("Hell yeah!");
-  // if
+  // questionCounter = questionCounter + 1;
+  questionCounter++;
+  console.log(questionCounter);
+
 }
 
-var createQuestions = function() {
+// console.log(questionCounter)
+var createQuestions = function(questionCounter) {
+  console.log(questionCounter);
   var buttonA = document.createElement("button");
   var buttonB = document.createElement("button");
   var buttonC = document.createElement("button");
+  buttonA.innerText = allQuestions[questionCounter].A;
+  buttonB.innerText = allQuestions[questionCounter].B;
+  buttonC.innerText = allQuestions[questionCounter].C;
   var A = answersBox.appendChild(buttonA);
   var B = answersBox.appendChild(buttonB);
   var C = answersBox.appendChild(buttonC);
   A.setAttribute("id", "A");
   B.setAttribute("id", "B");
   C.setAttribute("id", "C");
+  questionDisplay.innerText = allQuestions[questionCounter].question;
 
-  // for (var i=0; i<allQuestions.length; i++) {
-    questionDisplay.innerText = allQuestions[questionCounter].question;
-    buttonA.innerText = allQuestions[questionCounter].A;
-    buttonB.innerText = allQuestions[questionCounter].B;
-    buttonC.innerText = allQuestions[questionCounter].C;
-  // }
-  buttonA.addEventListener("click", checkanswer())
+
+  document.querySelector("#A").addEventListener("click", checkanswer)
 }
 
 //event listener
