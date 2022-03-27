@@ -1,6 +1,6 @@
 // global vars
 var startBtn = document.querySelector("#start-quiz");
-var startTime = 5;
+var startTime = 60;
 var time = startTime;
 var timer = document.querySelector('#count-down');
 var questionCounter = 0;
@@ -10,19 +10,40 @@ var introP = document.querySelector('#intro');
 var answerCheck = document.querySelector('#answerCheck');
 var allQuestions = [
   {
-      question: "What's up?",
-      A: "nm",
-      B: "sup",
-      C: "I try my best",
-      correct: "nm"
+      question: "What does HTML stand for?",
+      A: "Hyper Text Markup Language",
+      B: "Hyperlinks and Text Markup Language",
+      C: "Home Tool Markup Language",
+      correct: "Hyper Text Markup Language"
   },
   {
-      question: "How r u",
-      A: "good",
-      B: "bad",
-      C: "great",
-      correct: "great"
-  }
+      question: "How do you create a function in JavaScript?",
+      A: "function:myFunction()",
+      B: "function myFunction()",
+      C: "function = myFunction()",
+      correct: "function myFunction()"
+  },
+  {
+    question: "What does CSS stand for?",
+    A: "Cascading Style Sheets",
+    B: "Computer Style Sheets",
+    C: "Creative Style Sheets",
+    correct: "Cascading Style Sheets"
+},
+{
+  question: "Which jQuery method is used to set one or more style properties for selected elements?",
+  A: "css()",
+  B: "style()",
+  C: "html()",
+  correct: "css()"
+},
+{
+  question: "What is Git?",
+  A: "A programming language.",
+  B: "A nickname for GitHub.",
+  C: "A version control system.",
+  correct: "A version control system."
+},
 ];
 
 //functions
@@ -83,8 +104,6 @@ var checkanswer = function(event) {
   console.log(questionCounter);
   reset();
   if (questionCounter >= allQuestions.length) {
-    console.log("why");
-    console.log(allQuestions.length);
     endQuiz();
     return;
   } else {
@@ -121,10 +140,6 @@ var endQuiz = function() {
   endSubmit.setAttribute("type", "submit");
   answersBox.appendChild(endSubmit);
   endSubmit.addEventListener("click", submitScore);
-  // let them save high scores
-  // ask if they want to play again
-  //   if yes restart
-  //   if no, nothing
 }
 
 var submitScore = function(event) {
@@ -136,24 +151,17 @@ var submitScore = function(event) {
     return;
   }
   
-  var testScores = localStorage.getItem("testHS");
-  if (!testScores) {
-    localStorage.setItem("testHS", JSON.stringify([{initials:initials, score:time}]));
+  var quizHighScores = localStorage.getItem("codeQuizHighScores");
+  if (!quizHighScores) {
+    localStorage.setItem("codeQuizHighScores", JSON.stringify([{initials:initials, score:time}]));
     location.assign("highscores.html");
     return;
   }
-  // testScores
+    quizHighScores = JSON.parse(quizHighScores);
+    quizHighScores.push({initials: initials, score:time});
+    localStorage.setItem("quizHighScores", JSON.stringify(quizHighScores));
+    location.assign("highscores.html");
 
-  // //   if (!highScores) {
-  //     localStorage.setItem("QuizhighScores", JSON.stringify([{initials:initials, score:time}]));
-  // //     location.assign("highscores.html");
-  // //     return;
-  // //   }
-  // // var highScores = localstorage.getItem("highScores");
-  //   highScores = JSON.parse(highScores);
-  //   highScores.push({initials: initials, score:time});
-  //   localStorage.setItem("highScores", JSON.stringify(highScores));
-  //   location.assign("highscores.html");
 }
 
 
