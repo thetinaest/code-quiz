@@ -125,9 +125,8 @@ var endQuiz = function() {
   clearInterval(interval);
   reset();
   questionDisplay.innerText = "Quiz complete!"
-  answersBox.innerText = "Quiz over!";
+  answersBox.innerText = "Your score is " + time + "! Please enter your initials to save your highscore!";
   var endingNote = document.createElement("p");
-  endingNote.innerText = "Your score is " + time + "! Please enter your initials to save your highscore!";
   answersBox.appendChild(endingNote);
 
   var saveInitials = document.createElement("input");
@@ -159,16 +158,9 @@ var submitScore = function(event) {
   }
     quizHighScores = JSON.parse(quizHighScores);
     quizHighScores.push({initials: initials, score:time});
-    localStorage.setItem("quizHighScores", JSON.stringify(quizHighScores));
+    localStorage.setItem("codeQuizHighScores", JSON.stringify(quizHighScores));
     location.assign("highscores.html");
-
 }
-
-
-// var restart = function() {
-//   location.reload();
-// }
-
 
 //event listeners
 startBtn.addEventListener("click", startGame);

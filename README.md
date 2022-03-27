@@ -1,14 +1,14 @@
-# code-quiz
+# Code Quiz
+Please view live application here: https://thetinaest.github.io/code-quiz/
+
+## Description of Code Quiz
 ```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+This was a challenge for the UW coding bootcamp. When going through this quiz of 5 questions, you have 60 seconds to complete it. If you answer a question incorrectly, you lose 10 seconds. You are done when you answer all questions or the timer runs out. Your final score is the amount of time you have left. You are able to set your highscores and view all other highscores via the link in the header, or by submitting your own score. 
+
+This was created using vanilla javaScript.
+All questions and answers were written by www.w3schools.com.
 ```
+
+## Image of quiz homepage
+![Screenshot](/assets/screenshot.PNG)
+
